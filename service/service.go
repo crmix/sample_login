@@ -31,7 +31,31 @@ func (c *userServiceImpl) GetUsersName (user []model.User)(interface{}, error) {
 		log.Println(err)
 		return nil, fmt.Errorf("error in getusername %w", err) 
 	}
+  return res, nil
 
+}
+
+type postServiceImpl struct {
+	storage storage.Post
+	logger  log.Logger
+
+}
+
+func PostUserService(posts storage.Post, logger log.Logger) PostService {
+	return &postServiceImpl{
+		storage: posts,
+		logger: logger,
+	}
+}
+type PostService interface{
+	PostNewUser(posts []model.PostNewUser)(interface{}, error) 
+}
+
+func (s *postServiceImpl) PostNewUser (posts []model.PostNewUser)(interface{}, error){
+	res, err :=s.storage.PostNewUser(posts)
+	if err !=nil {
+		log.Println(err)
+		return nil, fmt.Errorf("error in posting %w", err)
+	}
 	return res, nil
-
 }

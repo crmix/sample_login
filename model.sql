@@ -6,3 +6,4 @@ create table users(
 );
 
 insert INTO users (name, phone, username) values ('feruz', 996543414, 'feruz1');
+insert into users(name, username, phone) values('Bexruz', 'bexruz', 910745351);

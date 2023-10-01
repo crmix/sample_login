@@ -36,6 +36,30 @@ func (u *userRepo) GetUsersName(users []model.User) (interface{} , error) {
 
 		Users= append(Users, user)
 	}
-	//fmt.Println(feruz)
 	return Users, nil
 }
+type postRepo struct {
+	db *sql.DB
+}
+
+func PostUserRepo(db *sql.DB) *postRepo {
+	return &postRepo{
+		db: db,
+	}
+}
+func (r *postRepo) PostNewUser([]model.PostNewUser)(interface{}, error) {
+	
+	row, err :=r.db.Query(query.POST_NEWUSER)
+	
+	if err != nil{
+		log.Println(err)
+		return nil, fmt.Errorf("error in PostNewUser: %w", err)}
+		
+		var newpost model.PostNewUser
+      row.Scan(
+			&newpost.Name,
+			&newpost.PhoneNumber,
+			&newpost.UserName)
+		//Posts = append(Posts,newpost )	
+		return newpost, nil
+	  }

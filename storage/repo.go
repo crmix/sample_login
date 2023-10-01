@@ -13,3 +13,11 @@ type User1 interface {
 func NewUserRepo(db *sql.DB) User1 {
 	return postgres.NewUserRepo(db)
 }
+
+type Post interface{
+	PostNewUser(post []model.PostNewUser)(interface{}, error)
+}
+
+func PostRepo(db *sql.DB) Post{
+	return postgres.PostUserRepo(db)
+}
