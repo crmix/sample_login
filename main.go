@@ -19,13 +19,12 @@ func main() {
 	db := platform.DBConn()
 	cfg := config.Load()
 
-    storage :=storage.NewUserRepo(db)
-	service :=service.NewUserService(storage, *zap.NewStdLog(zap.L()))
-	api := controller.NewUserAPI(service)
-
+    storage :=storage.PostRepo(db)
+	service :=service.PostUserService(storage, *zap.NewStdLog(zap.L()))
+	api := controller.PostUserAPI(service)
 	root := mux.NewRouter()
 
-	router.Init(root, api)
+	router.Func(root, api)
 
 	httpServer := http.Server{
 		Addr: cfg.HTTPPort,

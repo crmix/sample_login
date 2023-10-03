@@ -6,16 +6,9 @@ import (
 	"login/storage/postgres"
 )
 
-type User1 interface {
-	GetUsersName(users []model.User) (interface{}, error)
-}
-
-func NewUserRepo(db *sql.DB) User1 {
-	return postgres.NewUserRepo(db)
-}
-
 type Post interface{
-	PostNewUser(post []model.PostNewUser)(interface{}, error)
+	CreateUser(post model.PostNewUser)([]model.PostNewUser, error)
+	Login(login model.LogStruct)([]model.LogStruct, error)
 }
 
 func PostRepo(db *sql.DB) Post{

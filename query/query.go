@@ -1,9 +1,5 @@
 package query
 
-var GET_NAME= `
-  SELECT *FROM users
-`
-
 var POST_NEWUSER=`
   insert into users (name, username, phone) values ($1,$2, $3)
 	returning
@@ -11,4 +7,8 @@ var POST_NEWUSER=`
 		username,
 		phone
 		
+`
+
+var LOGIN_QUERY =`
+  select username, password from users
 `
