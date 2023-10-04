@@ -20,7 +20,7 @@ func PostUserService(posts storage.Post, logger log.Logger) PostService {
 }
 type PostService interface{
 	CreateUser(posts model.PostNewUser)([]model.PostNewUser, error) 
-	Login(login model.LogStruct)([]model.LogStruct, error)
+	LoginUser(login model.LogStruct)([]model.LogStruct, error)
 }
 
 func (s *postServiceImpl) CreateUser (posts model.PostNewUser)([]model.PostNewUser, error){
@@ -34,7 +34,7 @@ func (s *postServiceImpl) CreateUser (posts model.PostNewUser)([]model.PostNewUs
 
 
 func (p *postServiceImpl) LoginUser (login model.LogStruct)([]model.LogStruct, error){
-	res, err :=p.storage.Login(login)
+	res, err :=p.storage.LoginUser(login)
 	if err !=nil {
 		log.Println(err)
 		return nil, fmt.Errorf("error in posting %w", err)

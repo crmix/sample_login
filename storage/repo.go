@@ -8,7 +8,7 @@ import (
 
 type Post interface{
 	CreateUser(post model.PostNewUser)([]model.PostNewUser, error)
-	Login(login model.LogStruct)([]model.LogStruct, error)
+	LoginUser(login model.LogStruct)([]model.LogStruct, error)
 }
 
 func PostRepo(db *sql.DB) Post{

@@ -23,7 +23,7 @@ func PostUserAPI(service service.PostService) PostAPI {
 }
 type PostAPI interface{
 	CreateUser(w http.ResponseWriter, r *http.Request)
-	Login(w http.ResponseWriter, r *http.Request)
+	LoginUser(w http.ResponseWriter, r *http.Request)
 	
 }
 
@@ -79,12 +79,12 @@ func HomePage(w http.ResponseWriter, r *http.Request){
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
-  encoder.Encode([]int{1,2,3,4,5})
+  encoder.Encode("Kabinetingizga xush kelibsiz")
 }
 
 
 
-func Login(w http.ResponseWriter, r *http.Request){
+func(api *postApi) LoginUser(w http.ResponseWriter, r *http.Request){
 	
     bStruct :=PostBody{}
 	
